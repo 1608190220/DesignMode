@@ -1,0 +1,178 @@
+package com.design.mode.creational;
+
+import com.design.mode.creational.abstractfactory.AbstractFactoryTest;
+import com.design.mode.creational.builder.BuilderTest;
+import com.design.mode.creational.factorymethod.FactoryMethodTest;
+import com.design.mode.creational.prototype.PrototypeTest;
+import com.design.mode.creational.singleton.SingletonTest;
+
+/**
+ * 创建型设计模式统一演示入口
+ *
+ * 五大创建型模式概览：
+ * 1. 单例模式（Singleton）
+ *    - 场景：确保一个类只有一个实例
+ *    - 核心：私有构造、静态实例、全局访问点
+ *    - 分类：饿汉式、懒汉式、双重检查锁、静态内部类、枚举
+ *
+ * 2. 工厂方法模式（Factory Method）
+ *    - 场景：定义创建对象的接口，由子类决定创建哪个实例
+ *    - 核心：产品接口、具体产品、工厂接口、具体工厂
+ *    - 优点：符合开闭原则，符合单一职责原则
+ *
+ * 3. 抽象工厂模式（Abstract Factory）
+ *    - 场景：创建一系列相关或相互依赖的对象
+ *    - 核心：多个抽象产品、多个具体产品、抽象工厂、具体工厂
+ *    - 优点：保证产品族一致性，易于扩展产品族
+ *
+ * 4. 建造者模式（Builder）
+ *    - 场景：创建复杂对象，对象有多个组成成分
+ *    - 核心：复杂产品、抽象建造者、具体建造者、指挥者（可选）
+ *    - 优点：代码清晰、类型安全、支持链式调用
+ *
+ * 5. 原型模式（Prototype）
+ *    - 场景：通过复制现有对象创建新对象
+ *    - 核心：实现 Cloneable 接口，实现 clone() 方法
+ *    - 实现：浅拷贝、深拷贝（序列化、手动克隆）
+ */
+public class CreationPatternsDemo {
+
+    public static void main(String[] args) {
+        System.out.println("╔═══════════════════════════════════════════════════════════════════╗");
+        System.out.println("║          Java 创建型设计模式演示系统                              ║");
+        System.out.println("║          —— 五大创建型模式完整实现                                ║");
+        System.out.println("╚═══════════════════════════════════════════════════════════════════╝\n");
+
+        boolean exit = false;
+        while (!exit) {
+            showMenu();
+            int choice = readChoice();
+
+            switch (choice) {
+                case 1:
+                    System.out.println("\n【正在启动：单例模式测试】\n");
+                    SingletonTest.main(new String[0]);
+                    pressEnterToContinue();
+                    break;
+                case 2:
+
+                    
+                    System.out.println("\n【正在启动：工厂方法模式测试】\n");
+                    FactoryMethodTest.main(new String[0]);
+                    pressEnterToContinue();
+                    break;
+                case 3:
+                    System.out.println("\n【正在启动：抽象工厂模式测试】\n");
+                    AbstractFactoryTest.main(new String[0]);
+                    pressEnterToContinue();
+                    break;
+                case 4:
+                    System.out.println("\n【正在启动：建造者模式测试】\n");
+                    BuilderTest.main(new String[0]);
+                    pressEnterToContinue();
+                    break;
+                case 5:
+                    System.out.println("\n【正在启动：原型模式测试】\n");
+                    PrototypeTest.main(new String[0]);
+                    pressEnterToContinue();
+                    break;
+                case 6:
+                    System.out.println("\n【正在启动：所有模式完整演示】\n");
+                    runAllTests();
+                    pressEnterToContinue();
+                    break;
+                case 0:
+                    exit = true;
+                    System.out.println("\n感谢使用，再见！");
+                    break;
+                default:
+                    System.out.println("\n无效选择，请重新输入！");
+            }
+        }
+    }
+
+    /**
+     * 显示系统菜单
+     */
+    private static void showMenu() {
+        System.out.println("╔═══════════════════════════════════════════════════════════╗");
+        System.out.println("║                    主菜单                                 ║");
+        System.out.println("╠═══════════════════════════════════════════════════════════╣");
+        System.out.println("║  1. 单例模式（Singleton Pattern）                         ║");
+        System.out.println("║  2. 工厂方法模式（Factory Method Pattern）                ║");
+        System.out.println("║  3. 抽象工厂模式（Abstract Factory Pattern）              ║");
+        System.out.println("║  4. 建造者模式（Builder Pattern）                         ║");
+        System.out.println("║  5. 原型模式（Prototype Pattern）                         ║");
+        System.out.println("║  6. 查看所有模式完整演示                                   ║");
+        System.out.println("║  0. 退出系统                                               ║");
+        System.out.println("╚═══════════════════════════════════════════════════════════╝");
+        System.out.print("请输入选项（0-6）：");
+    }
+
+    /**
+     * 读取用户输入
+     *
+     * @return 用户选择的选项
+     */
+    private static int readChoice() {
+        try {
+            java.util.Scanner scanner = new java.util.Scanner(System.in);
+            return scanner.nextInt();
+        } catch (Exception e) {
+            return 99;  // 无效选项
+        }
+    }
+
+    /**
+     * 等待用户按回车键继续
+     */
+    private static void pressEnterToContinue() {
+        System.out.println("\n╭──────────────────────────────────────────────────────────╮");
+        System.out.print("│  按回车键返回主菜单...                                 │");
+        System.out.println("\n╰──────────────────────────────────────────────────────────╯");
+        try {
+            System.in.read();
+            System.in.skip(System.in.available());  // 清空输入缓冲区
+        } catch (Exception e) {
+            // 忽略异常
+        }
+    }
+
+    /**
+     * 运行所有模式的测试
+     */
+    private static void runAllTests() {
+        System.out.println("\n╔═══════════════════════════════════════════════════════════╗");
+        System.out.println("║           开始执行所有创建型模式演示                      ║");
+        System.out.println("╚═══════════════════════════════════════════════════════════╝");
+
+        System.out.println("\n════════════════════════════════════════════════════════════");
+        System.out.println("1/5 - 单例模式运行中...");
+        System.out.println("════════════════════════════════════════════════════════════");
+        SingletonTest.main(new String[0]);
+
+        System.out.println("\n════════════════════════════════════════════════════════════");
+        System.out.println("2/5 - 工厂方法模式运行中...");
+        System.out.println("════════════════════════════════════════════════════════════");
+        FactoryMethodTest.main(new String[0]);
+
+        System.out.println("\n════════════════════════════════════════════════════════════");
+        System.out.println("3/5 - 抽象工厂模式运行中...");
+        System.out.println("════════════════════════════════════════════════════════════");
+        AbstractFactoryTest.main(new String[0]);
+
+        System.out.println("\n════════════════════════════════════════════════════════════");
+        System.out.println("4/5 - 建造者模式运行中...");
+        System.out.println("════════════════════════════════════════════════════════════");
+        BuilderTest.main(new String[0]);
+
+        System.out.println("\n════════════════════════════════════════════════════════════");
+        System.out.println("5/5 - 原型模式运行中...");
+        System.out.println("════════════════════════════════════════════════════════════");
+        PrototypeTest.main(new String[0]);
+
+        System.out.println("\n╔═══════════════════════════════════════════════════════════╗");
+        System.out.println("║           所有创建型模式演示完成！                        ║");
+        System.out.println("╚═══════════════════════════════════════════════════════════╝");
+    }
+}
