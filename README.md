@@ -14,7 +14,7 @@
 
 ### 2.2 JDK 版本
 - 项目语言级别：`JDK 1.8`
-- IDEA 项目 SDK：`1.8`
+- IDEA/Trae 项目 SDK：`1.8`
 
 ### 2.3 依赖包
 - 主要依赖 JDK 标准库（示例代码以基础语法与面向对象设计为主）
@@ -74,7 +74,6 @@
 
 除各模式独立启动类外，项目还提供了按类别聚合的演示入口：
 
-- `src/com/design/mode/Main.java`
 - `src/com/design/mode/creational/CreationPatternsDemo.java`
 - `src/com/design/mode/structural/StructuralPatternsDemo.java`
 - `src/com/design/mode/behavioral/BehavioralPatternsDemo.java`
@@ -89,3 +88,23 @@
 - `com.design.mode.creational.singleton.SingletonTest`
 
 若使用命令行，可先编译再运行对应全限定类名。
+
+---
+
+## 6. Git 提交建议（Trae 相关）
+
+为保持仓库整洁，提交代码时建议遵循以下规则：
+
+- 尽量不要提交 Trae 的规格与会话过程文件，例如：`.trae/specs/` 下内容。
+- `skills` 目录中的内容可按价值判断后提交：对团队有复用价值的技能可以提交。
+- 个人偏好或本地化规则（如个人 `rules`、个人环境配置）尽量不要提交。
+
+可参考以下忽略策略（按团队实际情况调整）：
+
+```gitignore
+# Trae 规格过程文件
+.trae/specs/
+
+# 个人规则与本地偏好（示例）
+.trae/rules/
+```

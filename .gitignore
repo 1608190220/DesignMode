@@ -1,0 +1,27 @@
+# ===== Java / 编译产物 =====
+*.class
+*.log
+*.tmp
+
+# 常见构建与输出目录
+out/
+bin/
+target/
+build/
+
+# ===== IntelliJ IDEA =====
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/shelf/
+.idea/httpRequests/
+.idea/caches/
+.idea/libraries/
+*.iml
+
+# ===== Trae 本地过程文件 =====
+.trae/specs/
+.trae/rules/
+
+# ===== OS 文件 =====
+.DS_Store
+Thumbs.db
